@@ -7,6 +7,7 @@ import {
   Banknote, FileBarChart, Settings2, LifeBuoy, ChevronLeft,
   ChevronRight, HardHat,
 } from "lucide-react";
+import Wordmark from "@/components/Wordmark";
 import { useStore } from "@/lib/store";
 import { navItems } from "@/lib/data";
 import clsx from "clsx";
@@ -41,19 +42,19 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className={clsx(
-        "flex flex-col bg-navy-900 border-r border-navy-800 h-full transition-all duration-200 ease-in-out flex-shrink-0",
+        "flex flex-col bg-white border-r border-slate-100 h-full transition-all duration-200 ease-in-out flex-shrink-0",
         collapsed ? "w-[72px]" : "w-[260px]"
       )}
     >
       {/* Brand */}
-      <div className={clsx("flex items-center gap-3 px-4 py-5 border-b border-navy-800 min-h-[72px]", collapsed && "justify-center px-0")}>
-        <div className="w-9 h-9 rounded-lg bg-sky-500 flex items-center justify-center flex-shrink-0">
-          <Gauge size={18} className="text-white" />
-        </div>
-        {!collapsed && (
+      <div className={clsx("flex items-center gap-3 px-4 py-5 border-b border-slate-100 min-h-[72px]", collapsed && "justify-center px-0")}>
+        {collapsed ? (
+          <div className="w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center flex-shrink-0">
+            <Gauge size={18} className="text-black" />
+          </div>
+        ) : (
           <div className="min-w-0">
-            <p className="text-sm font-bold text-white leading-tight truncate">Hotel Engineering</p>
-            <p className="text-xs text-navy-300 leading-tight mt-0.5 truncate">Asset & Maintenance</p>
+            <Wordmark size={18} />
           </div>
         )}
       </div>
@@ -73,11 +74,11 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                   "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
                   collapsed ? "justify-center" : "gap-3",
                   active
-                    ? "bg-sky-500/15 text-sky-400 border border-sky-500/20"
-                    : "text-navy-300 hover:bg-navy-800 hover:text-white border border-transparent"
+                    ? "bg-slate-50 text-black border border-slate-100"
+                    : "text-slate-600 hover:bg-slate-50 border border-transparent"
                 )}
               >
-                <Icon size={18} className="flex-shrink-0" />
+                <Icon size={18} className="flex-shrink-0 text-black" />
                 {!collapsed && <span className="truncate">{item.label}</span>}
               </Link>
             );
@@ -86,26 +87,26 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
       </nav>
 
       {/* Collapse Toggle */}
-      <div className="px-3 py-2 border-t border-navy-800">
+      <div className="px-3 py-2 border-t border-slate-100">
         <button
           onClick={onToggle}
           className={clsx(
-            "w-full flex items-center rounded-lg px-3 py-2.5 text-sm font-medium text-navy-400 hover:bg-navy-800 hover:text-white transition-colors duration-150",
+            "w-full flex items-center rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors duration-150",
             collapsed ? "justify-center" : "gap-3"
           )}
         >
-          {collapsed ? <ChevronRight size={18} /> : <><ChevronLeft size={18} /><span>Collapse</span></>}
+          {collapsed ? <ChevronRight size={18} className="text-black" /> : <><ChevronLeft size={18} className="text-black" /><span>Collapse</span></>}
         </button>
       </div>
 
       {/* Footer */}
       {!collapsed && (
         <div className="px-4 py-4 border-t border-navy-800">
-          <div className="flex items-center gap-3 bg-navy-800 rounded-lg px-3 py-2.5">
-            <LifeBuoy size={16} className="text-sky-400 flex-shrink-0" />
+          <div className="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2.5">
+            <LifeBuoy size={16} className="text-black flex-shrink-0" />
             <div className="min-w-0">
-              <p className="text-xs font-semibold text-white truncate">24/7 Escalation</p>
-              <p className="text-xs text-navy-400 truncate">Critical assets monitored</p>
+              <p className="text-xs font-semibold text-black truncate">24/7 Escalation</p>
+              <p className="text-xs text-slate-500 truncate">Critical assets monitored</p>
             </div>
           </div>
         </div>

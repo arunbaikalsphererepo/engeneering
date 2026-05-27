@@ -17,18 +17,8 @@ export default function TopBar({ title, eyebrow = "Engineering Operations" }: To
 
   return (
     <header className="h-[72px] bg-white border-b border-slate-200 px-6 flex items-center justify-between gap-4 sticky top-0 z-30 flex-shrink-0">
-      {/* Left: Title */}
-      <div className="min-w-0">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="text-xl font-semibold text-slate-900 leading-tight truncate">{title}</h1>
-        <p className="text-xs text-slate-400 truncate hidden sm:block">
-          {activeRole.label} · {activeRole.subtitle}
-        </p>
-      </div>
-
-      {/* Right: Actions */}
-      <div className="flex items-center gap-2 flex-shrink-0">
-        {/* Role switcher */}
+      {/* Left: Role selector */}
+      <div className="min-w-0 flex items-center gap-4">
         <div className="hidden lg:flex items-center gap-2 h-9 px-3 rounded-lg border border-slate-200 bg-white text-sm">
           <span className="text-xs font-bold uppercase text-slate-400 tracking-wider">Role</span>
           <select
@@ -45,6 +35,11 @@ export default function TopBar({ title, eyebrow = "Engineering Operations" }: To
             ))}
           </select>
         </div>
+      </div>
+
+      {/* Right: Actions */}
+      <div className="flex items-center gap-2 flex-shrink-0">
+        {/* (role selector removed from right) */}
 
         {/* Search */}
         <div className="hidden md:flex items-center gap-2 h-9 px-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-400 w-64">

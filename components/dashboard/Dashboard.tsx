@@ -39,8 +39,8 @@ function MetricCard({ label, value, delta, icon: Icon, color = "sky" }: {
   label: string; value: string; delta: string; icon: React.ElementType; color?: string;
 }) {
   const colorMap: Record<string, string> = {
-    sky: "bg-sky-50 text-sky-600", emerald: "bg-emerald-50 text-emerald-600",
-    amber: "bg-amber-50 text-amber-600", red: "bg-red-50 text-red-600",
+    sky: "bg-slate-50 text-slate-700", emerald: "bg-slate-50 text-slate-700",
+    amber: "bg-slate-50 text-slate-700", red: "bg-slate-50 text-slate-700",
   };
   return (
     <div className="card p-5 space-y-3">
@@ -48,10 +48,10 @@ function MetricCard({ label, value, delta, icon: Icon, color = "sky" }: {
         <Icon size={18} />
       </div>
       <div>
-        <p className="text-2xl font-bold text-slate-900 leading-none">{value}</p>
-        <p className="text-xs font-medium text-slate-500 mt-1">{label}</p>
+        <p className="text-2xl font-bold text-black leading-none">{value}</p>
+        <p className="text-xs font-medium text-slate-600 mt-1">{label}</p>
       </div>
-      <p className="text-xs text-slate-400 border-t border-slate-100 pt-2">{delta}</p>
+      <p className="text-xs text-slate-500 border-t border-slate-100 pt-2">{delta}</p>
     </div>
   );
 }
@@ -59,16 +59,16 @@ function MetricCard({ label, value, delta, icon: Icon, color = "sky" }: {
 function WorkOrderRow({ wo, onClick }: { wo: WorkOrder; onClick: () => void }) {
   return (
     <tr className="table-row-hover border-b border-slate-100 last:border-0" onClick={onClick}>
-      <td className="table-cell font-semibold text-navy-800 whitespace-nowrap">{wo.id}</td>
+      <td className="table-cell font-semibold text-black whitespace-nowrap">{wo.id}</td>
       <td className="table-cell max-w-[260px]">
-        <p className="font-medium text-slate-800 truncate">{wo.title}</p>
-        <p className="text-xs text-slate-400 truncate">{wo.area}</p>
+        <p className="font-medium text-black truncate">{wo.title}</p>
+        <p className="text-xs text-slate-500 truncate">{wo.area}</p>
       </td>
       <td className="table-cell"><StatusPill text={wo.priority} /></td>
       <td className="table-cell text-slate-600 whitespace-nowrap">{wo.owner}</td>
       <td className="table-cell"><StatusPill text={wo.stage} /></td>
       <td className="table-cell"><StatusPill text={wo.sla} /></td>
-      <td className="table-cell font-medium text-slate-700 whitespace-nowrap">{wo.eta}</td>
+      <td className="table-cell font-medium text-slate-600 whitespace-nowrap">{wo.eta}</td>
     </tr>
   );
 }
@@ -99,7 +99,7 @@ function EngineeringRadar() {
           <defs>
             <radialGradient id="radarGlow" cx="50%" cy="50%" r="65%">
               <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="100%" stopColor="#eff6ff" />
+              <stop offset="100%" stopColor="#f8fafc" />
             </radialGradient>
             <linearGradient id="radarFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.9" />
@@ -112,7 +112,7 @@ function EngineeringRadar() {
 
           <circle cx={center} cy={center} r={118} fill="url(#radarGlow)" />
           {[28, 58, 88].map((r) => (
-            <circle key={r} cx={center} cy={center} r={r} fill="none" stroke="#e2e8f0" strokeDasharray="3 5" />
+            <circle key={r} cx={center} cy={center} r={r} fill="none" stroke="#f1f5f9" strokeDasharray="3 5" />
           ))}
 
           {categories.map((cat, index) => {
@@ -125,7 +125,7 @@ function EngineeringRadar() {
             const rotate = (angle * 180) / Math.PI + 90;
             return (
               <g key={cat.label}>
-                <line x1={center} y1={center} x2={x} y2={y} stroke="#dbeafe" strokeWidth={1.25} />
+                <line x1={center} y1={center} x2={x} y2={y} stroke="#f1f5f9" strokeWidth={1.25} />
                 <rect
                   x={bx - 8}
                   y={by - barLength / 2}
@@ -139,17 +139,17 @@ function EngineeringRadar() {
                 />
                 <circle cx={x} cy={y} r={5.5} fill="#ffffff" stroke={cat.health >= 85 ? palette[index % palette.length] : "#fb7185"} strokeWidth={2} />
                 <circle cx={x} cy={y} r={2.2} fill={cat.health >= 85 ? palette[index % palette.length] : "#fb7185"} />
-                <text x={center + Math.cos(angle) * 132} y={center + Math.sin(angle) * 132 + 4} textAnchor="middle" fontSize="10" fontWeight="700" fill="#334155">
+                <text x={center + Math.cos(angle) * 132} y={center + Math.sin(angle) * 132 + 4} textAnchor="middle" fontSize="10" fontWeight="700" fill="#0f172a">
                   {cat.label}
                 </text>
-                <text x={center + Math.cos(angle) * 132} y={center + Math.sin(angle) * 132 + 18} textAnchor="middle" fontSize="9" fill="#94a3b8">
+                <text x={center + Math.cos(angle) * 132} y={center + Math.sin(angle) * 132 + 18} textAnchor="middle" fontSize="9" fill="#64748b">
                   {cat.health}% · {cat.count}
                 </text>
               </g>
             );
           })}
 
-          <circle cx={center} cy={center} r={38} fill="#ffffff" stroke="#e2e8f0" />
+          <circle cx={center} cy={center} r={38} fill="#ffffff" stroke="#f1f5f9" />
           <text x={center} y={center - 3} textAnchor="middle" fontSize="10" fontWeight="700" fill="#64748b">
             Property
           </text>
@@ -165,8 +165,8 @@ function EngineeringRadar() {
             <div className="flex items-start gap-2">
               <span className="mt-1 h-2.5 w-2.5 rounded-full flex-shrink-0" style={{ background: palette[index % palette.length] }} />
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-slate-700 truncate">{cat.label}</p>
-                <p className="text-[11px] text-slate-400 mt-0.5">{cat.count} assets</p>
+                <p className="text-xs font-semibold text-black truncate">{cat.label}</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">{cat.count} assets</p>
               </div>
             </div>
             <div className="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden">
@@ -242,8 +242,8 @@ function CostDonut() {
             <div className="flex items-start gap-2">
               <span className="mt-1 h-2.5 w-2.5 rounded-full flex-shrink-0" style={{ background: palette[index % palette.length] }} />
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
-                <p className="text-[11px] text-slate-400 mt-0.5">{item.value}</p>
+                <p className="text-xs font-semibold text-black truncate">{item.label}</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">{item.value}</p>
               </div>
             </div>
             <div className="mt-3 h-2 rounded-full bg-slate-100 overflow-hidden">
@@ -325,17 +325,17 @@ export default function Dashboard() {
           </div>
           <div className="card p-5">
             <PanelHeader icon={AlertTriangle} title="Loss From Missed Maintenance" action="Avoidable impact" />
-            <div className="grid grid-cols-2 gap-3">
-              {lossDrivers.map((driver) => (
-                <div key={driver.area} className="rounded-lg border border-slate-100 bg-red-50/30 p-3 flex justify-between items-start gap-2">
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold text-slate-800 leading-snug">{driver.area}</p>
-                    <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">{driver.detail}</p>
+              <div className="grid grid-cols-2 gap-3">
+                {lossDrivers.map((driver) => (
+                  <div key={driver.area} className="rounded-lg border border-slate-100 bg-slate-50 p-3 flex justify-between items-start gap-2">
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold text-black leading-snug">{driver.area}</p>
+                      <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">{driver.detail}</p>
+                    </div>
+                    <span className="text-sm font-bold text-black flex-shrink-0">{driver.loss}</span>
                   </div>
-                  <span className="text-sm font-bold text-red-600 flex-shrink-0">{driver.loss}</span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
           </div>
         </div>
       </div>
@@ -388,7 +388,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-3 gap-2 pt-1">
               {[["Morning", "48"], ["Evening", "36"], ["Night", "22"]].map(([s, n]) => (
                 <div key={s} className="rounded bg-white border border-slate-200 p-2 text-center">
-                  <p className="text-base font-bold text-navy-800">{n}</p>
+                  <p className="text-base font-bold text-black">{n}</p>
                   <p className="text-[10px] text-slate-500">{s}</p>
                 </div>
               ))}
