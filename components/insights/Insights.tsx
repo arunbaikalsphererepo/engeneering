@@ -74,7 +74,7 @@ export default function Insights() {
                 onClick={() => setTab(t.id)}
                 className={clsx(
                   "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all",
-                  tab === t.id ? "bg-navy-800 text-white" : "text-slate-600 hover:bg-slate-100 border border-slate-200"
+                  tab === t.id ? "bg-slate-900 text-white shadow-md" : "text-slate-600 hover:bg-slate-100 border border-slate-200"
                 )}
               >
                 <Icon size={15} />
@@ -90,10 +90,10 @@ export default function Insights() {
           {/* KPI Strip */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: "Open Work Orders", value: openOrders.length, sub: "across property", icon: Wrench, color: "text-sky-600 bg-sky-50", trend: -3, good: true },
-              { label: "Critical Issues", value: criticalCount, sub: "guest / safety impact", icon: AlertTriangle, color: "text-red-600 bg-red-50", trend: +1, good: false },
-              { label: "SLA Compliance", value: `${avgSla}%`, sub: "7-day rolling", icon: ShieldCheck, color: "text-emerald-600 bg-emerald-50", trend: +2, good: true },
-              { label: "Avg MTTR (hrs)", value: avgMttr, sub: "mean time to resolve", icon: Clock, color: "text-amber-600 bg-amber-50", trend: -0.3, good: true },
+              { label: "Open Work Orders", value: openOrders.length, sub: "across property", icon: Wrench, color: "text-slate-600 bg-slate-100", trend: -3, good: true },
+              { label: "Critical Issues", value: criticalCount, sub: "guest / safety impact", icon: AlertTriangle, color: "text-slate-600 bg-slate-100", trend: +1, good: false },
+              { label: "SLA Compliance", value: `${avgSla}%`, sub: "7-day rolling", icon: ShieldCheck, color: "text-slate-600 bg-slate-100", trend: +2, good: true },
+              { label: "Avg MTTR (hrs)", value: avgMttr, sub: "mean time to resolve", icon: Clock, color: "text-slate-600 bg-slate-100", trend: -0.3, good: true },
             ].map((s) => {
               const Icon = s.icon;
               return (
@@ -105,9 +105,9 @@ export default function Insights() {
                   <p className="text-xs font-medium text-slate-500">{s.label}</p>
                   <div className="flex items-center gap-1">
                     {s.good
-                      ? <TrendingDown size={13} className="text-emerald-500" />
-                      : <TrendingUp size={13} className="text-red-500" />}
-                    <span className={clsx("text-xs font-semibold", s.good ? "text-emerald-600" : "text-red-600")}>
+                      ? <TrendingDown size={13} className="text-slate-400" />
+                      : <TrendingUp size={13} className="text-slate-600" />}
+                    <span className="text-xs font-medium text-slate-400">
                       {s.trend > 0 ? "+" : ""}{s.trend} vs last week
                     </span>
                   </div>
@@ -127,7 +127,7 @@ export default function Insights() {
                       <span className="text-sm font-medium text-slate-700">{cat.label}</span>
                       <div className="flex items-center gap-3 text-xs text-slate-500">
                         <span>{cat.count} assets</span>
-                        <span className={clsx("font-semibold", cat.health >= 85 ? "text-emerald-600" : "text-amber-600")}>
+                        <span className="font-semibold text-slate-700">
                           {cat.health}% health
                         </span>
                       </div>
@@ -135,8 +135,8 @@ export default function Insights() {
                     <div className="h-3 rounded-full bg-slate-100 overflow-hidden ring-1 ring-inset ring-slate-200">
                       <div
                         className={clsx(
-                          "h-full rounded-full transition-all shadow-[0_6px_18px_rgba(34,197,94,0.15)]",
-                          cat.health >= 85 ? "bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-300" : "bg-gradient-to-r from-amber-400 via-amber-300 to-orange-300"
+                          "h-full rounded-full transition-all",
+                          cat.health >= 85 ? "bg-slate-900" : "bg-slate-400"
                         )}
                         style={{ width: `${(cat.count / maxCatCount) * 100}%` }}
                       />
@@ -157,15 +157,12 @@ export default function Insights() {
                 <div className="grid grid-cols-7 gap-2 items-end h-40">
                   {SLA_WEEKLY.map((d) => (
                     <div key={d.day} className="flex flex-col items-center gap-1.5 h-full justify-end">
-                      <span className={clsx(
-                        "text-[10px] font-bold px-2 py-0.5 rounded-full",
-                        d.met >= 90 ? "text-emerald-700 bg-emerald-50" : d.met >= 85 ? "text-amber-700 bg-amber-50" : "text-red-700 bg-red-50"
-                      )}>{d.met}%</span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-slate-600 bg-slate-100">{d.met}%</span>
                       <div className="w-full flex-1 flex items-end">
                         <div
                           className={clsx(
-                            "w-full rounded-t-2xl rounded-b-md transition-all shadow-sm",
-                            d.met >= 90 ? "bg-gradient-to-t from-emerald-400 to-cyan-300" : d.met >= 85 ? "bg-gradient-to-t from-amber-400 to-yellow-300" : "bg-gradient-to-t from-red-400 to-rose-300"
+                            "w-full rounded-t-xl rounded-b-md transition-all",
+                            d.met >= 90 ? "bg-slate-900" : d.met >= 85 ? "bg-slate-600" : "bg-slate-400"
                           )}
                           style={{ height: `${d.met}%` }}
                         />
@@ -176,9 +173,9 @@ export default function Insights() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
-                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-emerald-400" />≥90%</div>
-                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-amber-400" />85–89%</div>
-                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-red-400" />&lt;85%</div>
+                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-slate-900" />≥90%</div>
+                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-slate-600" />85–89%</div>
+                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm bg-slate-400" />&lt;85%</div>
               </div>
             </div>
 
@@ -190,15 +187,15 @@ export default function Insights() {
                   <div key={d.label} className="space-y-1 rounded-2xl border border-slate-100 bg-slate-50/60 p-3">
                     <div className="flex justify-between text-sm">
                       <span className="font-medium text-slate-700">{d.label}</span>
-                      <span className={clsx("font-semibold text-xs", d.hours <= d.target ? "text-emerald-600" : "text-red-600")}>
+                      <span className="font-semibold text-xs text-slate-700">
                         {d.hours}h <span className="text-slate-400 font-normal">/ {d.target}h target</span>
                       </span>
                     </div>
                     <div className="h-3 rounded-full bg-slate-100 overflow-hidden ring-1 ring-inset ring-slate-200">
                       <div
                         className={clsx(
-                          "h-full rounded-full shadow-sm",
-                          d.hours <= d.target ? "bg-gradient-to-r from-emerald-400 to-cyan-300" : "bg-gradient-to-r from-red-400 to-rose-300"
+                          "h-full rounded-full",
+                          d.hours <= d.target ? "bg-slate-900" : "bg-slate-400"
                         )}
                         style={{ width: `${Math.min(100, (d.hours / d.target) * 100)}%` }}
                       />
@@ -218,13 +215,13 @@ export default function Insights() {
               <div className="space-y-3">
                 {TECH_UTIL.map((t) => (
                   <div key={t.name} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-navy-50 border border-navy-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs font-bold text-navy-700">{t.name.split(" ").map((n) => n[0]).join("")}</span>
+                    <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-slate-700">{t.name.split(" ").map((n) => n[0]).join("")}</span>
                     </div>
                     <div className="flex-1 min-w-0 space-y-1">
                       <div className="flex justify-between">
                         <span className="text-sm font-medium text-slate-800 truncate">{t.name}</span>
-                        <span className={clsx("text-xs font-bold", t.utilization >= 85 ? "text-amber-600" : "text-emerald-600")}>
+                        <span className="text-xs font-bold text-slate-700">
                           {t.utilization}%
                         </span>
                       </div>
@@ -251,8 +248,8 @@ export default function Insights() {
                   <p className="text-xs text-slate-400 font-medium">{m.label}</p>
                   <p className="text-xl font-bold text-slate-900">{m.value}</p>
                   <div className="flex items-center gap-1">
-                    {m.good ? <TrendingDown size={13} className="text-emerald-500" /> : <TrendingUp size={13} className="text-red-500" />}
-                    <span className={clsx("text-xs font-semibold", m.good ? "text-emerald-600" : "text-red-600")}>{m.change} vs last month</span>
+                    {m.good ? <TrendingDown size={13} className="text-slate-400" /> : <TrendingUp size={13} className="text-slate-600" />}
+                    <span className="text-xs font-medium text-slate-400">{m.change} vs last month</span>
                   </div>
                 </div>
               ))}
@@ -267,10 +264,10 @@ export default function Insights() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-1">
             {/* reportsList is string[] */}
             {reportsList.map((name, i) => (
-              <div key={name} className="rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-4 hover:border-sky-200 hover:shadow-card-hover transition-all">
+              <div key={name} className="rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-4 hover:border-slate-300 hover:shadow-card-hover transition-all">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-navy-50 border border-navy-100 flex items-center justify-center flex-shrink-0">
-                    <FileText size={15} className="text-navy-600" />
+                  <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0">
+                    <FileText size={15} className="text-slate-600" />
                   </div>
                   <div className="min-w-0">
                     <p className="font-semibold text-slate-800 text-sm truncate">{name}</p>
@@ -291,10 +288,10 @@ export default function Insights() {
         <PanelHeader icon={CheckCircle2} title="Work Order Summary" action="All time" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
           {[
-            { label: "Total Open", value: openOrders.length, color: "text-sky-600 bg-sky-50", icon: Wrench },
-            { label: "Critical", value: openOrders.filter((w) => w.priority === "Critical").length, color: "text-red-600 bg-red-50", icon: AlertTriangle },
-            { label: "High", value: openOrders.filter((w) => w.priority === "High").length, color: "text-amber-600 bg-amber-50", icon: TrendingUp },
-            { label: "Completed", value: allWorkOrders.filter((w) => w.stage === "Completed").length, color: "text-emerald-600 bg-emerald-50", icon: CheckCircle2 },
+            { label: "Total Open", value: openOrders.length, color: "text-slate-600 bg-slate-100", icon: Wrench },
+            { label: "Critical", value: openOrders.filter((w) => w.priority === "Critical").length, color: "text-slate-600 bg-slate-100", icon: AlertTriangle },
+            { label: "High", value: openOrders.filter((w) => w.priority === "High").length, color: "text-slate-600 bg-slate-100", icon: TrendingUp },
+            { label: "Completed", value: allWorkOrders.filter((w) => w.stage === "Completed").length, color: "text-slate-600 bg-slate-100", icon: CheckCircle2 },
           ].map((s) => {
             const Icon = s.icon;
             return (
@@ -319,11 +316,11 @@ export default function Insights() {
             <p className="text-xs text-slate-500">Occupancy</p>
           </div>
           <div className="rounded-xl border border-slate-200 p-4 text-center space-y-1">
-            <p className="text-2xl font-bold text-red-600">28</p>
+            <p className="text-2xl font-bold text-slate-900">28</p>
             <p className="text-xs text-slate-500">Rooms Blocked</p>
           </div>
           <div className="rounded-xl border border-slate-200 p-4 text-center space-y-1">
-            <p className="text-2xl font-bold text-emerald-600">972</p>
+            <p className="text-2xl font-bold text-slate-900">972</p>
             <p className="text-xs text-slate-500">Ready for Sale</p>
           </div>
         </div>

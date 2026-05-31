@@ -30,7 +30,7 @@ export default function Settings() {
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <button
-            className="flex items-center gap-1 hover:text-navy-800 transition-colors"
+            className="flex items-center gap-1 hover:text-slate-900 transition-colors"
             onClick={() => setSelected(null)}
           >
             <ChevronLeft size={14} /> Configuration
@@ -41,7 +41,7 @@ export default function Settings() {
 
         {/* Section header */}
         <div className="card p-6 flex flex-col sm:flex-row gap-5 items-start">
-          <div className="w-12 h-12 rounded-xl bg-navy-800 text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
             <Icon size={22} />
           </div>
           <div className="flex-1 space-y-1">
@@ -57,12 +57,12 @@ export default function Settings() {
         {/* Rules */}
         <div className="card p-5 space-y-3">
           <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wide flex items-center gap-2">
-            <Info size={14} className="text-sky-500" /> Configuration Rules
+            <Info size={14} className="text-slate-500" /> Configuration Rules
           </h3>
           <ul className="space-y-2">
             {selected.rules.map((rule, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-slate-600">
-                <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                   {i + 1}
                 </span>
                 {rule}
@@ -125,9 +125,9 @@ export default function Settings() {
             Manage master data, SLA rules, approval limits, vendor masters, asset categories, and checklist templates.
           </p>
         </div>
-        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-center gap-2">
-          <ShieldCheck size={15} className="text-amber-600 flex-shrink-0" />
-          <p className="text-xs text-amber-800 font-medium">Changes require Chief Engineer approval.</p>
+        <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex items-center gap-2">
+          <ShieldCheck size={15} className="text-slate-500 flex-shrink-0" />
+          <p className="text-xs text-slate-600 font-medium">Changes require Chief Engineer approval.</p>
         </div>
       </div>
 
@@ -138,11 +138,11 @@ export default function Settings() {
           return (
             <button
               key={section.id}
-              className="card p-5 text-left space-y-4 hover:border-sky-300 hover:shadow-card-hover transition-all"
+              className="card p-5 text-left space-y-4 hover:border-slate-300 hover:shadow-card-hover transition-all"
               onClick={() => setSelected(section)}
             >
               <div className="flex items-start justify-between gap-3">
-                <div className="w-10 h-10 rounded-xl bg-navy-800 text-white flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
                   <Icon size={18} />
                 </div>
                 <ChevronRight size={16} className="text-slate-300 mt-1 flex-shrink-0" />
@@ -171,7 +171,7 @@ export default function Settings() {
             { label: "SLA Priority Tiers", value: configurationSections.find((s) => s.id === "sla-matrix")?.records.length ?? 0 },
           ].map((s) => (
             <div key={s.label} className="rounded-xl border border-slate-200 p-4 text-center space-y-1">
-              <p className="text-2xl font-bold text-navy-800">{s.value}</p>
+              <p className="text-2xl font-bold text-slate-900">{s.value}</p>
               <p className="text-xs text-slate-500 font-medium">{s.label}</p>
             </div>
           ))}
@@ -189,8 +189,8 @@ export default function Settings() {
             { user: "Engineering Planner", action: "Added Tower D – Residences to location hierarchy", time: "Yesterday, 6:30 PM" },
           ].map((entry, i) => (
             <div key={i} className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors">
-              <div className="w-7 h-7 rounded-full bg-navy-50 border border-navy-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-[10px] font-bold text-navy-700">
+              <div className="w-7 h-7 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-[10px] font-bold text-slate-700">
                   {entry.user.split(" ").map((n) => n[0]).join("").slice(0, 2)}
                 </span>
               </div>

@@ -1,12 +1,11 @@
 import clsx from "clsx";
 
 export default function Meter({ value, className }: { value: number; className?: string }) {
-  const color =
-    value >= 85 ? "bg-emerald-500" : value >= 70 ? "bg-amber-500" : "bg-red-500";
+  const fill = value >= 85 ? "bg-slate-900" : value >= 60 ? "bg-slate-600" : "bg-slate-300";
   return (
-    <span className={clsx("block h-2 w-full rounded-full bg-slate-100 overflow-hidden", className)}>
+    <span className={clsx("block h-1.5 w-full rounded-full bg-slate-100 overflow-hidden", className)}>
       <span
-        className={clsx("block h-full rounded-full transition-all duration-300", color)}
+        className={clsx("block h-full rounded-full transition-all duration-300", fill)}
         style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
       />
     </span>

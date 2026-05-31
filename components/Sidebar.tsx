@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Gauge, LayoutDashboard, Wrench, ListChecks, ShieldCheck,
-  Banknote, FileBarChart, Settings2, LifeBuoy, ChevronLeft,
-  ChevronRight, HardHat,
+  LayoutDashboard, Wrench, ListChecks, ShieldCheck,
+  Banknote, Settings2, HardHat, ChevronLeft, ChevronRight, LifeBuoy,
 } from "lucide-react";
 import Wordmark from "@/components/Wordmark";
 import { useStore } from "@/lib/store";
@@ -19,7 +18,6 @@ const iconMap: Record<string, React.ElementType> = {
   workflow: ListChecks,
   approvals: ShieldCheck,
   insights: Banknote,
-  reports: FileBarChart,
   settings: Settings2,
 };
 
@@ -42,26 +40,29 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className={clsx(
-        "flex flex-col bg-white border-r border-slate-100 h-full transition-all duration-200 ease-in-out flex-shrink-0",
-        collapsed ? "w-[72px]" : "w-[260px]"
+        "flex flex-col h-full bg-white border-r border-slate-200 transition-all duration-200 ease-in-out flex-shrink-0",
+        collapsed ? "w-[68px]" : "w-[256px]"
       )}
     >
       {/* Brand */}
-      <div className={clsx("flex items-center gap-3 px-4 py-5 border-b border-slate-100 min-h-[72px]", collapsed && "justify-center px-0")}>
+      <div
+        className={clsx(
+          "flex items-center min-h-[60px] border-b border-slate-100",
+          collapsed ? "justify-center px-0" : "px-5 gap-3"
+        )}
+      >
         {collapsed ? (
-          <div className="w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center flex-shrink-0">
-            <Gauge size={18} className="text-black" />
+          <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center flex-shrink-0">
+            <LayoutDashboard size={15} className="text-white" />
           </div>
         ) : (
-          <div className="min-w-0">
-            <Wordmark size={18} />
-          </div>
+          <Wordmark size={17} />
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-4 px-3 scrollbar-thin">
-        <div className="space-y-1">
+      <nav className="flex-1 overflow-y-auto py-3 px-2.5 scrollbar-thin">
+        <div className="space-y-0.5">
           {visibleNav.map((item) => {
             const Icon = iconMap[item.id] ?? LayoutDashboard;
             const active = isActive(item.href);
@@ -71,14 +72,14 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                 href={item.href}
                 title={collapsed ? item.label : undefined}
                 className={clsx(
-                  "flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
+                  "flex items-center rounded-xl px-2.5 py-2.5 text-[13px] font-medium transition-all duration-150",
                   collapsed ? "justify-center" : "gap-3",
                   active
-                    ? "bg-slate-50 text-black border border-slate-100"
-                    : "text-slate-600 hover:bg-slate-50 border border-transparent"
+                    ? "bg-slate-900 text-white"
+                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
                 )}
               >
-                <Icon size={18} className="flex-shrink-0 text-black" />
+                <Icon size={16} className="flex-shrink-0" />
                 {!collapsed && <span className="truncate">{item.label}</span>}
               </Link>
             );
@@ -86,31 +87,31 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
         </div>
       </nav>
 
-      {/* Collapse Toggle */}
-      <div className="px-3 py-2 border-t border-slate-100">
-        <button
-          onClick={onToggle}
-          className={clsx(
-            "w-full flex items-center rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors duration-150",
-            collapsed ? "justify-center" : "gap-3"
-          )}
-        >
-          {collapsed ? <ChevronRight size={18} className="text-black" /> : <><ChevronLeft size={18} className="text-black" /><span>Collapse</span></>}
-        </button>
-      </div>
-
       {/* Footer */}
-      {!collapsed && (
-        <div className="px-4 py-4 border-t border-navy-800">
-          <div className="flex items-center gap-3 bg-slate-50 rounded-lg px-3 py-2.5">
-            <LifeBuoy size={16} className="text-black flex-shrink-0" />
-            <div className="min-w-0">
-              <p className="text-xs font-semibold text-black truncate">24/7 Escalation</p>
-              <p className="text-xs text-slate-500 truncate">Critical assets monitored</p>
+      <div className="border-t border-slate-100">
+        {!collapsed && (
+          <div className="px-2.5 pt-3 pb-1">
+            <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-slate-50 border border-slate-100">
+              <LifeBuoy size={14} className="text-slate-400 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-[12px] font-semibold text-slate-700 truncate">24/7 Escalation</p>
+                <p className="text-[11px] text-slate-400 truncate">Critical assets monitored</p>
+              </div>
             </div>
           </div>
+        )}
+        <div className="px-2.5 py-3">
+          <button
+            onClick={onToggle}
+            className={clsx(
+              "w-full flex items-center rounded-xl px-2.5 py-2.5 text-[13px] font-medium text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all",
+              collapsed ? "justify-center" : "gap-3"
+            )}
+          >
+            {collapsed ? <ChevronRight size={15} /> : <><ChevronLeft size={15} /><span>Collapse</span></>}
+          </button>
         </div>
-      )}
+      </div>
     </aside>
   );
 }

@@ -152,6 +152,7 @@ export interface NonQRItem {
 export interface ExpenditureBill {
   id: string;
   type: "utility" | "repair";
+  category: string;           // MIS R&M or Utility header
   description: string;
   amount: number;
   month: string; // "YYYY-MM"

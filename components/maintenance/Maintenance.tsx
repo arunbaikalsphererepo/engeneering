@@ -41,7 +41,7 @@ export default function Maintenance() {
           <PanelHeader icon={ClipboardCheck} title="Preventive Maintenance Plan" action="Weekly progress" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {pmPlan.map((day) => (
-              <div key={day.day} className="rounded-xl border border-slate-200 p-4 space-y-3 hover:border-sky-200 hover:shadow-card-hover transition-all cursor-pointer">
+              <div key={day.day} className="rounded-xl border border-slate-200 p-4 space-y-3 hover:border-slate-300 hover:shadow-card-hover transition-all cursor-pointer">
                 <p className="text-sm font-bold text-slate-800">{day.day}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-slate-500">{day.tasks} tasks</span>
@@ -63,7 +63,7 @@ export default function Maintenance() {
           <PanelHeader icon={TimerReset} title="Vendor & Permit Schedule" action="Next 24 hours" />
           <div className="grid grid-cols-1 gap-4">
             {vendorJobs.map((job) => (
-              <div key={job.vendor} className="rounded-xl border border-slate-200 p-4 space-y-2.5 hover:border-sky-200 hover:shadow-card-hover transition-all cursor-pointer">
+              <div key={job.vendor} className="rounded-xl border border-slate-200 p-4 space-y-2.5 hover:border-slate-300 hover:shadow-card-hover transition-all cursor-pointer">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-sm font-semibold text-slate-800">{job.vendor}</p>
@@ -106,7 +106,7 @@ export default function Maintenance() {
               <tbody>
                 {openOrders.map((wo) => (
                   <tr key={wo.id} className="border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors cursor-pointer">
-                    <td className="table-cell font-semibold font-mono text-navy-800">{wo.id}</td>
+                    <td className="table-cell font-semibold font-mono text-slate-900">{wo.id}</td>
                     <td className="table-cell max-w-[200px]">
                       <p className="font-medium text-slate-800 truncate">{wo.title}</p>
                       <p className="text-xs text-slate-400 truncate">{wo.asset}</p>
@@ -133,7 +133,7 @@ export default function Maintenance() {
           {priorityOrders.map((wo) => (
             <div
               key={wo.id}
-              className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-sky-200 hover:bg-sky-50/30 transition-all cursor-pointer"
+              className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"
               onClick={() => router.push(`/maintenance?detail=work-order&id=${wo.id}`)}
             >
               <div className="flex-1 min-w-0">
@@ -154,10 +154,10 @@ export default function Maintenance() {
   })();
 
   const stats = [
-    { label: "Open Work Orders", value: openOrders.length, delta: "across property", icon: Wrench, color: "text-sky-600 bg-sky-50" },
-    { label: "Critical Live Issues", value: openOrders.filter((wo) => wo.priority === "Critical").length, delta: "guest or safety impact", icon: AlertTriangle, color: "text-red-600 bg-red-50" },
-    { label: "PM Tasks This Week", value: pmPlan.reduce((s, d) => s + d.tasks, 0), delta: "7-star service standard", icon: ClipboardCheck, color: "text-emerald-600 bg-emerald-50" },
-    { label: "Vendor Jobs Scheduled", value: vendorJobs.length, delta: "next 24 hours", icon: TimerReset, color: "text-amber-600 bg-amber-50" },
+    { label: "Open Work Orders", value: openOrders.length, delta: "across property", icon: Wrench, color: "text-slate-600 bg-slate-100" },
+    { label: "Critical Live Issues", value: openOrders.filter((wo) => wo.priority === "Critical").length, delta: "guest or safety impact", icon: AlertTriangle, color: "text-slate-600 bg-slate-100" },
+    { label: "PM Tasks This Week", value: pmPlan.reduce((s, d) => s + d.tasks, 0), delta: "7-star service standard", icon: ClipboardCheck, color: "text-slate-600 bg-slate-100" },
+    { label: "Vendor Jobs Scheduled", value: vendorJobs.length, delta: "next 24 hours", icon: TimerReset, color: "text-slate-600 bg-slate-100" },
   ];
 
   return (
@@ -174,8 +174,8 @@ export default function Maintenance() {
           </div>
 
           {activeRole.canCreateRequest && (
-            <div className="w-full lg:w-[280px] rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-4 shadow-sm">
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-600">Quick Action</p>
+            <div className="w-full lg:w-[280px] rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">Quick Action</p>
               <p className="mt-1 text-sm font-semibold text-slate-800">Need a new maintenance request?</p>
               <p className="mt-1 text-xs text-slate-500">Open the request form directly from here.</p>
               <button className="btn btn-primary mt-4 w-full justify-center" onClick={() => router.push("/maintenance/new") }>
@@ -203,8 +203,8 @@ export default function Maintenance() {
           const Icon = s.icon;
           return (
             <div key={s.label} className="card p-4 space-y-2">
-              <div className={clsx("w-9 h-9 rounded-lg flex items-center justify-center", s.color)}>
-                <Icon size={18} />
+              <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center">
+                <Icon size={17} className="text-slate-600" />
               </div>
               <p className="text-2xl font-bold text-slate-900">{s.value}</p>
               <p className="text-xs font-medium text-slate-500">{s.label}</p>
@@ -228,7 +228,7 @@ export default function Maintenance() {
               className={clsx(
                 "px-4 py-2 rounded-lg text-sm font-medium transition-all",
                 activeSection === section.id
-                  ? "bg-navy-800 text-white shadow-md"
+                  ? "bg-slate-900 text-white shadow-md"
                   : "bg-slate-50 text-slate-600 border border-slate-200 hover:bg-slate-100"
               )}
             >

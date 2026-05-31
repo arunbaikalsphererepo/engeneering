@@ -95,7 +95,7 @@ export default function EquipmentRegistry() {
       className="flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-slate-500 hover:text-slate-700 transition-colors"
     >
       {label}
-      <ArrowUpDown size={11} className={sortConfig.key === k ? "text-sky-600" : "text-slate-300"} />
+      <ArrowUpDown size={11} className={sortConfig.key === k ? "text-slate-900" : "text-slate-300"} />
     </button>
   );
 
@@ -113,7 +113,7 @@ export default function EquipmentRegistry() {
             className={clsx(
               "flex-1 flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all",
               register === key
-                ? "bg-navy-800 text-white shadow-sm"
+                ? "bg-slate-900 text-white shadow-sm"
                 : "text-slate-600 hover:bg-slate-50"
             )}
           >
@@ -390,7 +390,7 @@ export default function EquipmentRegistry() {
                 className={clsx(
                   "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors",
                   nonQRFilter === cat
-                    ? "bg-navy-800 text-white border-navy-800"
+                    ? "bg-slate-900 text-white border-slate-900"
                     : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
                 )}
               >

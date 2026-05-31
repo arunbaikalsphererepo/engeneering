@@ -162,6 +162,47 @@ export const nonQRItemsSeed: NonQRItem[] = [
   { id: "NQ-006", identity: "NQI-HARD-006", name: "Window Handle – Tilt & Turn", category: "Hardware", location: "Tower D – Residences", quantity: 176, condition: "Good", lastChecked: "May 08, 2026" },
 ];
 
+export const repairCategories: string[] = [
+  "Building",
+  "Complimentary Services and Gift",
+  "Contract Services",
+  "Decorations",
+  "Dues and Subscriptions",
+  "Electrical and Mechanical Equipment",
+  "Elevators and Escalators",
+  "Equipment Rental",
+  "Engineering Supplies",
+  "Furniture and Equipment",
+  "Grounds Maintenance and Landscaping",
+  "Heating, Ventilation & Air Cond Equipment",
+  "Kitchen Equipment",
+  "Laundry and Dry Cleaning",
+  "Laundry Equipment",
+  "Licenses and Permits",
+  "Life and Safety",
+  "Light Bulbs",
+  "Miscellaneous",
+  "Operating Supplies",
+  "Painting and Decorating",
+  "Plumbing",
+  "Printing and Stationery",
+  "Swimming Pool",
+  "Training",
+  "Travel - Meal and Entertainment",
+  "Travel - Others",
+  "Uniform Laundry",
+  "Uniforms",
+  "Vehicle Repair",
+  "Waste Removal",
+];
+
+export const utilityCategories: string[] = [
+  "Electricity",
+  "Water",
+  "Diesel",
+  "Other Fuels",
+];
+
 export const expenditureBudgetsSeed: { utility: number; repair: number } = {
   utility: 450000,
   repair: 200000,
@@ -169,23 +210,23 @@ export const expenditureBudgetsSeed: { utility: number; repair: number } = {
 
 export const expenditureBillsSeed: ExpenditureBill[] = [
   // Utility bills
-  { id: "UB-001", type: "utility", description: "Electricity – BESCOM Dec 2025", amount: 420000, month: "2025-12", reference: "BESCOM-2025-1892", uploadedAt: "Jan 3, 2026" },
-  { id: "UB-002", type: "utility", description: "Electricity – BESCOM Jan 2026", amount: 395000, month: "2026-01", reference: "BESCOM-2026-0122", uploadedAt: "Feb 2, 2026" },
-  { id: "UB-003", type: "utility", description: "Water charges – Jan 2026", amount: 100000, month: "2026-01", reference: "BWSSB-2026-0045", uploadedAt: "Feb 5, 2026" },
-  { id: "UB-004", type: "utility", description: "Electricity – BESCOM Feb 2026", amount: 430000, month: "2026-02", reference: "BESCOM-2026-0244", uploadedAt: "Mar 4, 2026" },
-  { id: "UB-005", type: "utility", description: "Electricity – BESCOM Mar 2026", amount: 415000, month: "2026-03", reference: "BESCOM-2026-0368", uploadedAt: "Apr 2, 2026" },
-  { id: "UB-006", type: "utility", description: "Diesel – DG Sets Mar 2026", amount: 60000, month: "2026-03", reference: "FUEL-2026-0312", uploadedAt: "Apr 3, 2026" },
-  { id: "UB-007", type: "utility", description: "Electricity – BESCOM Apr 2026", amount: 410000, month: "2026-04", reference: "BESCOM-2026-0491", uploadedAt: "May 3, 2026" },
-  { id: "UB-008", type: "utility", description: "Electricity – BESCOM May 2026 (interim)", amount: 180000, month: "2026-05", reference: "BESCOM-2026-0551", uploadedAt: "May 15, 2026" },
+  { id: "UB-001", type: "utility", category: "Electricity", description: "Electricity – BESCOM Dec 2025", amount: 420000, month: "2025-12", reference: "BESCOM-2025-1892", uploadedAt: "Jan 3, 2026" },
+  { id: "UB-002", type: "utility", category: "Electricity", description: "Electricity – BESCOM Jan 2026", amount: 395000, month: "2026-01", reference: "BESCOM-2026-0122", uploadedAt: "Feb 2, 2026" },
+  { id: "UB-003", type: "utility", category: "Water", description: "Water charges – Jan 2026", amount: 100000, month: "2026-01", reference: "BWSSB-2026-0045", uploadedAt: "Feb 5, 2026" },
+  { id: "UB-004", type: "utility", category: "Electricity", description: "Electricity – BESCOM Feb 2026", amount: 430000, month: "2026-02", reference: "BESCOM-2026-0244", uploadedAt: "Mar 4, 2026" },
+  { id: "UB-005", type: "utility", category: "Electricity", description: "Electricity – BESCOM Mar 2026", amount: 415000, month: "2026-03", reference: "BESCOM-2026-0368", uploadedAt: "Apr 2, 2026" },
+  { id: "UB-006", type: "utility", category: "Diesel", description: "Diesel – DG Sets Mar 2026", amount: 60000, month: "2026-03", reference: "FUEL-2026-0312", uploadedAt: "Apr 3, 2026" },
+  { id: "UB-007", type: "utility", category: "Electricity", description: "Electricity – BESCOM Apr 2026", amount: 410000, month: "2026-04", reference: "BESCOM-2026-0491", uploadedAt: "May 3, 2026" },
+  { id: "UB-008", type: "utility", category: "Electricity", description: "Electricity – BESCOM May 2026 (interim)", amount: 180000, month: "2026-05", reference: "BESCOM-2026-0551", uploadedAt: "May 15, 2026" },
   // Repair bills
-  { id: "RB-001", type: "repair", description: "Kone Elevators – Lift A overhaul", amount: 185000, month: "2025-12", reference: "KONE-INV-4821", uploadedAt: "Jan 6, 2026" },
-  { id: "RB-002", type: "repair", description: "Johnson Controls – Fire panel service", amount: 120000, month: "2026-01", reference: "JCI-INV-2026-011", uploadedAt: "Feb 4, 2026" },
-  { id: "RB-003", type: "repair", description: "Blue Star – HVAC coil replacement", amount: 120000, month: "2026-01", reference: "BSL-INV-2026-034", uploadedAt: "Feb 7, 2026" },
-  { id: "RB-004", type: "repair", description: "Plumbing – PRV replacement Towers B & C", amount: 160000, month: "2026-02", reference: "PLMB-2026-088", uploadedAt: "Mar 3, 2026" },
-  { id: "RB-005", type: "repair", description: "Thermax – Pool heat exchanger descaling", amount: 95000, month: "2026-03", reference: "TMX-INV-2026-042", uploadedAt: "Apr 5, 2026" },
-  { id: "RB-006", type: "repair", description: "Electrical – Ballroom dimmer replacement", amount: 120000, month: "2026-03", reference: "EL-INV-2026-091", uploadedAt: "Apr 8, 2026" },
-  { id: "RB-007", type: "repair", description: "Civil – Basement waterproofing patch", amount: 190000, month: "2026-04", reference: "CIV-INV-2026-014", uploadedAt: "May 2, 2026" },
-  { id: "RB-008", type: "repair", description: "Kitchen – Combi oven parts & labour", amount: 90000, month: "2026-05", reference: "KTN-INV-2026-022", uploadedAt: "May 16, 2026" },
+  { id: "RB-001", type: "repair", category: "Elevators and Escalators", description: "Kone Elevators – Lift A overhaul", amount: 185000, month: "2025-12", reference: "KONE-INV-4821", uploadedAt: "Jan 6, 2026" },
+  { id: "RB-002", type: "repair", category: "Life and Safety", description: "Johnson Controls – Fire panel service", amount: 120000, month: "2026-01", reference: "JCI-INV-2026-011", uploadedAt: "Feb 4, 2026" },
+  { id: "RB-003", type: "repair", category: "Heating, Ventilation & Air Cond Equipment", description: "Blue Star – HVAC coil replacement", amount: 120000, month: "2026-01", reference: "BSL-INV-2026-034", uploadedAt: "Feb 7, 2026" },
+  { id: "RB-004", type: "repair", category: "Plumbing", description: "Plumbing – PRV replacement Towers B & C", amount: 160000, month: "2026-02", reference: "PLMB-2026-088", uploadedAt: "Mar 3, 2026" },
+  { id: "RB-005", type: "repair", category: "Swimming Pool", description: "Thermax – Pool heat exchanger descaling", amount: 95000, month: "2026-03", reference: "TMX-INV-2026-042", uploadedAt: "Apr 5, 2026" },
+  { id: "RB-006", type: "repair", category: "Electrical and Mechanical Equipment", description: "Electrical – Ballroom dimmer replacement", amount: 120000, month: "2026-03", reference: "EL-INV-2026-091", uploadedAt: "Apr 8, 2026" },
+  { id: "RB-007", type: "repair", category: "Building", description: "Civil – Basement waterproofing patch", amount: 190000, month: "2026-04", reference: "CIV-INV-2026-014", uploadedAt: "May 2, 2026" },
+  { id: "RB-008", type: "repair", category: "Kitchen Equipment", description: "Kitchen – Combi oven parts & labour", amount: 90000, month: "2026-05", reference: "KTN-INV-2026-022", uploadedAt: "May 16, 2026" },
 ];
 
 export const configurationSections = [

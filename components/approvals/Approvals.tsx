@@ -44,14 +44,14 @@ export default function Approvals() {
     return (
       <div className="max-w-2xl mx-auto space-y-5">
         <div className="flex items-center gap-2 text-sm text-slate-500">
-          <button className="hover:text-navy-800 transition-colors" onClick={() => setSelectedRequest(null)}>Approvals</button>
+          <button className="hover:text-slate-900 transition-colors" onClick={() => setSelectedRequest(null)}>Approvals</button>
           <ChevronRight size={14} />
           <span className="text-slate-800 font-medium">{selectedRequest.id}</span>
         </div>
         <div className="card p-6 space-y-5">
           <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0">
-              <Wrench size={20} className="text-amber-700" />
+            <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0">
+              <Wrench size={20} className="text-slate-600" />
             </div>
             <div className="flex-1">
               <div className="flex items-start justify-between gap-3">
@@ -112,14 +112,14 @@ export default function Approvals() {
     return (
       <div className="max-w-2xl mx-auto space-y-5">
         <div className="flex items-center gap-2 text-sm text-slate-500">
-          <button className="hover:text-navy-800 transition-colors" onClick={() => setSelectedApproval(null)}>Approvals</button>
+          <button className="hover:text-slate-900 transition-colors" onClick={() => setSelectedApproval(null)}>Approvals</button>
           <ChevronRight size={14} />
           <span className="text-slate-800 font-medium">{a.id}</span>
         </div>
         <div className="card p-6 space-y-5">
           <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-xl bg-navy-50 border border-navy-100 flex items-center justify-center flex-shrink-0">
-              <ShieldCheck size={20} className="text-navy-700" />
+            <div className="w-11 h-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0">
+              <ShieldCheck size={20} className="text-slate-700" />
             </div>
             <div className="flex-1">
               <div className="flex items-start justify-between gap-3">
@@ -186,7 +186,7 @@ export default function Approvals() {
           <p className="text-sm text-slate-500">Review and authorize maintenance, capex, and vendor requests before execution.</p>
         </div>
         {actionDone && (
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium">
             <CheckCircle2 size={15} /> {actionDone}
           </div>
         )}
@@ -195,9 +195,9 @@ export default function Approvals() {
       {/* KPI Cards */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: "Pending Review", value: pendingCount, icon: Clock, color: "text-amber-600 bg-amber-50" },
-          { label: "Approved", value: approvedCount, icon: CheckCircle2, color: "text-emerald-600 bg-emerald-50" },
-          { label: "Total This Week", value: approvalsSeed.length + pendingRequests.length, icon: ShieldCheck, color: "text-sky-600 bg-sky-50" },
+          { label: "Pending Review", value: pendingCount, icon: Clock, color: "text-slate-600 bg-slate-100" },
+          { label: "Approved", value: approvedCount, icon: CheckCircle2, color: "text-slate-600 bg-slate-100" },
+          { label: "Total This Week", value: approvalsSeed.length + pendingRequests.length, icon: ShieldCheck, color: "text-slate-600 bg-slate-100" },
         ].map((s) => {
           const Icon = s.icon;
           return (
@@ -220,11 +220,11 @@ export default function Approvals() {
             {pendingRequests.map((r) => (
               <div
                 key={r.id}
-                className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-amber-200 bg-amber-50/30 hover:bg-amber-50 transition-all cursor-pointer"
+                className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-all cursor-pointer"
                 onClick={() => { setSelectedRequest(r); setActionDone(null); }}
               >
-                <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
-                  <Wrench size={16} className="text-amber-700" />
+                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+                  <Wrench size={16} className="text-slate-600" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-slate-800 truncate">{r.title}</p>
@@ -232,7 +232,7 @@ export default function Approvals() {
                 </div>
                 <div className="flex items-center gap-2">
                   <StatusPill text={r.priority} />
-                  <span className="text-xs bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-full">Needs Approval</span>
+                  <span className="text-xs bg-slate-100 text-slate-600 font-semibold px-2 py-0.5 rounded-full">Needs Approval</span>
                   <ChevronRight size={16} className="text-slate-300" />
                 </div>
               </div>
@@ -246,7 +246,7 @@ export default function Approvals() {
         <div className="flex items-center justify-between mb-4">
           <PanelHeader icon={ShieldCheck} title="Approval Queue" action={`${shownApprovals.length} items`} />
           <button
-            className={clsx("btn btn-sm", filter === "pending" && "bg-sky-50 border-sky-200 text-sky-700")}
+            className={clsx("btn btn-sm", filter === "pending" && "bg-slate-900 border-slate-900 text-white")}
             onClick={() => setFilter(filter === "pending" ? "all" : "pending")}
           >
             {filter === "pending" ? "Show all" : "Pending only"}
@@ -256,7 +256,7 @@ export default function Approvals() {
           {shownApprovals.map((a) => (
             <div
               key={a.id}
-              className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-sky-200 hover:bg-sky-50/30 transition-all cursor-pointer"
+              className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50/30 transition-all cursor-pointer"
               onClick={() => { setSelectedApproval(a); setActionDone(null); }}
             >
               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">

@@ -35,23 +35,19 @@ const lossDrivers = [
   { area: "Kitchen equipment downtime", loss: "Rs 1.6 L", detail: "banquet readiness and emergency repair premium" },
 ];
 
-function MetricCard({ label, value, delta, icon: Icon, color = "sky" }: {
+function MetricCard({ label, value, delta, icon: Icon }: {
   label: string; value: string; delta: string; icon: React.ElementType; color?: string;
 }) {
-  const colorMap: Record<string, string> = {
-    sky: "bg-slate-50 text-slate-700", emerald: "bg-slate-50 text-slate-700",
-    amber: "bg-slate-50 text-slate-700", red: "bg-slate-50 text-slate-700",
-  };
   return (
-    <div className="card p-5 space-y-3">
-      <div className={`w-9 h-9 rounded-lg ${colorMap[color] ?? colorMap.sky} flex items-center justify-center`}>
-        <Icon size={18} />
+    <div className="card p-5 flex flex-col gap-4">
+      <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0">
+        <Icon size={17} className="text-slate-600" />
       </div>
       <div>
-        <p className="text-2xl font-bold text-black leading-none">{value}</p>
-        <p className="text-xs font-medium text-slate-600 mt-1">{label}</p>
+        <p className="text-2xl font-bold text-slate-900 leading-none tracking-tight">{value}</p>
+        <p className="text-[13px] font-medium text-slate-500 mt-1.5">{label}</p>
       </div>
-      <p className="text-xs text-slate-500 border-t border-slate-100 pt-2">{delta}</p>
+      <p className="text-xs text-slate-400 border-t border-slate-100 pt-3">{delta}</p>
     </div>
   );
 }
@@ -308,17 +304,17 @@ export default function Dashboard() {
             {financialMetrics.map((m) => {
               const Icon = m.icon;
               return (
-                <div key={m.label} className="card p-4 space-y-2">
+                <div key={m.label} className="card p-4 flex flex-col gap-2.5">
                   <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center">
-                      <Icon size={16} className="text-slate-600" />
+                    <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center">
+                      <Icon size={15} className="text-slate-500" />
                     </div>
-                    {m.trend === "up" ? <TrendingUp size={14} className="text-emerald-500" /> :
-                     m.trend === "down" ? <TrendingDown size={14} className="text-red-500" /> : null}
+                    {m.trend === "up" ? <TrendingUp size={13} className="text-slate-400" /> :
+                     m.trend === "down" ? <TrendingDown size={13} className="text-slate-400" /> : null}
                   </div>
-                  <p className="text-lg font-bold text-slate-900 leading-none">{m.value}</p>
-                  <p className="text-xs font-medium text-slate-500">{m.label}</p>
-                  <p className="text-xs text-slate-400">{m.delta}</p>
+                  <p className="text-[17px] font-bold text-slate-900 leading-none tracking-tight">{m.value}</p>
+                  <p className="text-[12px] font-medium text-slate-500">{m.label}</p>
+                  <p className="text-[11px] text-slate-400">{m.delta}</p>
                 </div>
               );
             })}
@@ -327,7 +323,7 @@ export default function Dashboard() {
             <PanelHeader icon={AlertTriangle} title="Loss From Missed Maintenance" action="Avoidable impact" />
               <div className="grid grid-cols-2 gap-3">
                 {lossDrivers.map((driver) => (
-                  <div key={driver.area} className="rounded-lg border border-slate-100 bg-slate-50 p-3 flex justify-between items-start gap-2">
+                  <div key={driver.area} className="rounded-xl border border-slate-100 bg-slate-50/80 p-3 flex justify-between items-start gap-2">
                     <div className="min-w-0">
                       <p className="text-xs font-semibold text-black leading-snug">{driver.area}</p>
                       <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">{driver.detail}</p>

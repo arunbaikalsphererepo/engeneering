@@ -119,9 +119,9 @@ export default function EquipmentForm({ mode = "create", initialValues = {}, onS
       </div>
 
       {/* QR Notice */}
-      <div className="flex items-start gap-3 p-4 rounded-xl bg-sky-50 border border-sky-200">
-        <QrCode size={18} className="text-sky-600 flex-shrink-0 mt-0.5" />
-        <p className="text-sm text-sky-700">
+      <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <QrCode size={18} className="text-slate-500 flex-shrink-0 mt-0.5" />
+        <p className="text-sm text-slate-700">
           {mode === "edit"
             ? "Saving changes updates the asset record while keeping the same equipment ID and QR code."
             : "After registration, the system generates a unique equipment ID and QR code containing the asset record."}

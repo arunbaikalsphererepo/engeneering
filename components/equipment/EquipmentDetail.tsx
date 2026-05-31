@@ -139,7 +139,7 @@ export default function EquipmentDetail({ assetId }: { assetId: string }) {
             <tbody>
               {history.map((ev) => (
                 <tr key={`${ev.date}-${ev.title}`} className="border-b border-slate-100 last:border-0">
-                  <td className="table-cell text-sky-600 font-bold text-xs whitespace-nowrap">{ev.date}</td>
+                  <td className="table-cell text-slate-700 font-bold text-xs whitespace-nowrap">{ev.date}</td>
                   <td className="table-cell">
                     <p className="font-semibold text-slate-800 text-sm">{ev.title}</p>
                     <p className="text-xs text-slate-500 mt-0.5">{ev.detail}</p>
@@ -172,7 +172,7 @@ export default function EquipmentDetail({ assetId }: { assetId: string }) {
               <tbody>
                 {linked.map((wo) => (
                   <tr key={wo.id} className="border-b border-slate-100 last:border-0">
-                    <td className="table-cell font-semibold font-mono text-navy-800">{wo.id}</td>
+                    <td className="table-cell font-semibold font-mono text-slate-900">{wo.id}</td>
                     <td className="table-cell">
                       <p className="font-medium text-slate-800">{wo.title}</p>
                       <p className="text-xs text-slate-400">{wo.department} · {wo.source}</p>

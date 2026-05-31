@@ -15,12 +15,12 @@ import {
   Sparkles,
   ShieldCheck,
   ClipboardList,
-  Search,
   ScanLine,
   Keyboard,
   BadgeInfo,
 } from "lucide-react";
 import type { Equipment, NonQRItem } from "@/lib/types";
+import { repairCategories, utilityCategories } from "@/lib/data";
 
 const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -64,7 +64,9 @@ export default function ExpenditureUploadPage({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [selectedIdentity, setSelectedIdentity] = useState("");
   const [scannerOpen, setScannerOpen] = useState(false);
+  const categories = type === "utility" ? utilityCategories : repairCategories;
   const [form, setForm] = useState({
+    category: "",
     description: "",
     amount: "",
     month: currentMonth(),
@@ -109,6 +111,7 @@ export default function ExpenditureUploadPage({
 
   const handleSubmit = async () => {
     const nextErrors: Record<string, string> = {};
+    if (!form.category) nextErrors.category = "Select a category";
     if (!form.description.trim()) nextErrors.description = "Required";
     const amount = Number.parseFloat(form.amount);
     if (!form.amount || Number.isNaN(amount) || amount <= 0) nextErrors.amount = "Enter a valid amount";
@@ -129,6 +132,7 @@ export default function ExpenditureUploadPage({
     try {
       addBill({
         type,
+        category: form.category,
         description: form.description.trim(),
         amount,
         month: form.month,
@@ -149,8 +153,8 @@ export default function ExpenditureUploadPage({
     <div className="space-y-6">
       <div className="relative overflow-hidden card border border-slate-100">
         <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-50" />
-        <div className="absolute -top-16 -right-12 w-52 h-52 rounded-full blur-3xl bg-sky-100/70" />
-        <div className="absolute -bottom-20 left-12 w-64 h-64 rounded-full blur-3xl bg-emerald-100/60" />
+        <div className="absolute -top-16 -right-12 w-52 h-52 rounded-full blur-3xl bg-slate-100/70" />
+        <div className="absolute -bottom-20 left-12 w-64 h-64 rounded-full blur-3xl bg-slate-100/60" />
 
         <div className="relative p-5 sm:p-6 flex flex-col gap-6">
           <div className="flex items-start justify-between gap-4">
@@ -193,6 +197,21 @@ export default function ExpenditureUploadPage({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
+                  <label className="label">Category <span className="text-red-500">*</span></label>
+                  <select
+                    className="select"
+                    value={form.category}
+                    onChange={(e) => { setForm((v) => ({ ...v, category: e.target.value })); setErrors((v) => ({ ...v, category: "" })); }}
+                  >
+                    <option value="">— Select MIS category —</option>
+                    {categories.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
+                  {errors.category && <p className="text-xs text-red-500 mt-1">{errors.category}</p>}
+                </div>
+
                 <div className="md:col-span-2">
                   <label className="label">Description <span className="text-red-500">*</span></label>
                   <input
@@ -306,7 +325,7 @@ export default function ExpenditureUploadPage({
                     {scannerOpen && (
                       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                         <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
+                          <div className="w-10 h-10 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
                             <BadgeInfo size={18} />
                           </div>
                           <div className="min-w-0 flex-1">
@@ -322,7 +341,7 @@ export default function ExpenditureUploadPage({
                               type="button"
                               className={clsx(
                                 "rounded-2xl border p-4 text-left transition",
-                                selectedIdentity === item.identity ? "border-sky-300 bg-sky-50" : "border-slate-200 bg-slate-50 hover:bg-slate-100",
+                                selectedIdentity === item.identity ? "border-slate-900 bg-slate-100" : "border-slate-200 bg-slate-50 hover:bg-slate-100",
                               )}
                               onClick={() => {
                                 setSelectedIdentity(item.identity);
@@ -340,8 +359,8 @@ export default function ExpenditureUploadPage({
                     )}
 
                     {selectedIdentityItem && (
-                      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-                        <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Selected identity</p>
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <p className="text-xs text-slate-700 font-semibold uppercase tracking-wide">Selected identity</p>
                         <p className="text-sm font-semibold text-slate-900 mt-1 truncate">{selectedIdentityItem.identity}</p>
                         <p className="text-xs text-slate-600 mt-1 truncate">{selectedIdentityItem.label} · {selectedIdentityItem.source === "qr" ? "QR asset" : "Non-QR item"}</p>
                       </div>
@@ -368,6 +387,12 @@ export default function ExpenditureUploadPage({
                     <Sparkles size={12} /> Upload summary
                   </div>
                   <div className="mt-4 space-y-3">
+                    <div className="rounded-2xl bg-white/10 border border-white/10 p-4">
+                      <p className="text-xs text-white/60">Category</p>
+                      <p className={clsx("text-sm font-semibold mt-1 truncate", form.category ? "text-white" : "text-white/40")}>
+                        {form.category || "Not selected"}
+                      </p>
+                    </div>
                     <div className="rounded-2xl bg-white/10 border border-white/10 p-4">
                       <p className="text-xs text-white/60">Type</p>
                       <p className="text-lg font-semibold mt-1">{title}</p>

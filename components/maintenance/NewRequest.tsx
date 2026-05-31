@@ -59,8 +59,8 @@ export default function NewRequest() {
     return (
       <div className="max-w-2xl mx-auto">
         <div className="card p-10 text-center space-y-5">
-          <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center mx-auto">
-            <CheckCircle2 size={28} className="text-emerald-600" />
+          <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center mx-auto">
+            <CheckCircle2 size={28} className="text-slate-700" />
           </div>
           <div className="space-y-1">
             <h2 className="text-2xl font-bold text-slate-900">Request Submitted</h2>
@@ -89,7 +89,7 @@ export default function NewRequest() {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Flags */}
         {form.guestImpact === "Yes" && (
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium">
             <Building2 size={15} /> Guest-impacting issue flagged
           </div>
         )}

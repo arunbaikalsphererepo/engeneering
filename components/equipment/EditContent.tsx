@@ -35,8 +35,8 @@ export default function EditContent({ id }: { id: string }) {
       <div className="max-w-2xl mx-auto">
         <div className="card p-8 flex flex-col md:flex-row gap-8 items-center">
           <div className="flex-1 space-y-4">
-            <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
-              <CheckCircle2 size={24} className="text-emerald-600" />
+            <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+              <CheckCircle2 size={24} className="text-slate-700" />
             </div>
             <div>
               <p className="eyebrow">Equipment updated</p>

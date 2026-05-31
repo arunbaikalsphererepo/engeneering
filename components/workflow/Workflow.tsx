@@ -68,8 +68,8 @@ export default function Workflow() {
     return (
       <div className="max-w-xl mx-auto">
         <div className="card p-10 text-center space-y-5">
-          <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center mx-auto">
-            <CheckCircle2 size={28} className="text-emerald-600" />
+          <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center mx-auto">
+            <CheckCircle2 size={28} className="text-slate-700" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-slate-900">Workflow Created</h2>
@@ -95,7 +95,7 @@ export default function Workflow() {
     return (
       <div className="max-w-3xl mx-auto space-y-5">
         <div className="flex items-center gap-2 text-sm text-slate-500">
-          <button className="hover:text-navy-800 transition-colors" onClick={() => setView("template")}>Templates</button>
+          <button className="hover:text-slate-900 transition-colors" onClick={() => setView("template")}>Templates</button>
           <ChevronRight size={14} />
           <span className="text-slate-800 font-medium">{selectedTemplate.name}</span>
         </div>
@@ -117,7 +117,7 @@ export default function Workflow() {
           <div className="space-y-2">
             {selectedTemplate.steps.map((step, i) => (
               <div key={i} className="flex items-start gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50/50">
-                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-navy-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -126,7 +126,7 @@ export default function Workflow() {
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-[10px] uppercase font-semibold tracking-wide text-slate-400">{step.type}</span>
                     {step.approval !== "No" && (
-                      <span className="text-[10px] bg-amber-100 text-amber-700 font-semibold px-1.5 py-0.5 rounded">Approval: {step.approval}</span>
+                      <span className="text-[10px] bg-slate-100 text-slate-600 font-semibold px-1.5 py-0.5 rounded">Approval: {step.approval}</span>
                     )}
                   </div>
                 </div>
@@ -166,10 +166,10 @@ export default function Workflow() {
             return (
               <button
                 key={id}
-                className="card p-6 text-left space-y-4 hover:border-sky-300 hover:shadow-card-hover transition-all"
+                className="card p-6 text-left space-y-4 hover:border-slate-300 hover:shadow-card-hover transition-all"
                 onClick={() => { setSelectedTemplateId(id); setView("builder"); }}
               >
-                <div className="w-10 h-10 rounded-lg bg-navy-800 text-white flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
                   <Icon size={18} />
                 </div>
                 <div className="space-y-1">
@@ -179,7 +179,7 @@ export default function Workflow() {
                 <div className="flex items-center gap-2 text-xs text-slate-400">
                   <ListChecks size={13} />
                   <span>{t.steps.length} steps</span>
-                  <span className="ml-auto text-sky-600 font-semibold flex items-center gap-1">
+                  <span className="ml-auto text-slate-600 font-semibold flex items-center gap-1">
                     Use template <ChevronRight size={13} />
                   </span>
                 </div>
@@ -196,7 +196,7 @@ export default function Workflow() {
     return (
       <div className="max-w-3xl mx-auto space-y-5">
         <div className="flex items-center gap-2 text-sm text-slate-500">
-          <button className="hover:text-navy-800 transition-colors" onClick={() => setSelectedWorkflowId(null)}>Workflows</button>
+          <button className="hover:text-slate-900 transition-colors" onClick={() => setSelectedWorkflowId(null)}>Workflows</button>
           <ChevronRight size={14} />
           <span className="text-slate-800 font-medium">{detailWorkflow.name}</span>
         </div>
@@ -220,7 +220,7 @@ export default function Workflow() {
           <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wide">Steps ({detailWorkflow.steps.length})</h3>
           {detailWorkflow.steps.map((step, i) => (
             <div key={i} className="flex items-start gap-4 p-4 rounded-xl border border-slate-200">
-              <div className="flex-shrink-0 w-7 h-7 rounded-full bg-navy-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">
+              <div className="flex-shrink-0 w-7 h-7 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center mt-0.5">
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">
@@ -230,7 +230,7 @@ export default function Workflow() {
               <div className="text-right flex-shrink-0 space-y-1">
                 <span className="text-[10px] uppercase font-semibold tracking-wide text-slate-400 block">{step.type}</span>
                 {step.approval !== "No" && (
-                  <span className="text-[10px] bg-amber-100 text-amber-700 font-semibold px-1.5 py-0.5 rounded block">Approval: {step.approval}</span>
+                  <span className="text-[10px] bg-slate-100 text-slate-600 font-semibold px-1.5 py-0.5 rounded block">Approval: {step.approval}</span>
                 )}
               </div>
             </div>
@@ -263,10 +263,10 @@ export default function Workflow() {
       {/* Summary Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Total Workflows", value: workflows.length, icon: GitBranch, color: "text-navy-700 bg-navy-50" },
-          { label: "Active", value: activeWorkflows.length, icon: Play, color: "text-sky-600 bg-sky-50" },
-          { label: "Total Steps", value: workflows.reduce((s, w) => s + w.steps.length, 0), icon: ListChecks, color: "text-amber-600 bg-amber-50" },
-          { label: "Templates", value: templateEntries.length, icon: Layers, color: "text-emerald-600 bg-emerald-50" },
+          { label: "Total Workflows", value: workflows.length, icon: GitBranch, color: "text-slate-700 bg-slate-100" },
+          { label: "Active", value: activeWorkflows.length, icon: Play, color: "text-slate-600 bg-slate-100" },
+          { label: "Total Steps", value: workflows.reduce((s, w) => s + w.steps.length, 0), icon: ListChecks, color: "text-slate-600 bg-slate-100" },
+          { label: "Templates", value: templateEntries.length, icon: Layers, color: "text-slate-600 bg-slate-100" },
         ].map((s) => {
           const Icon = s.icon;
           return (
@@ -289,7 +289,7 @@ export default function Workflow() {
             {activeWorkflows.map((w) => (
               <div
                 key={w.id}
-                className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-sky-200 hover:bg-sky-50/30 transition-all cursor-pointer"
+                className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50/30 transition-all cursor-pointer"
                 onClick={() => setSelectedWorkflowId(w.id)}
               >
                 <div className="flex-1 min-w-0 space-y-1">
@@ -321,10 +321,10 @@ export default function Workflow() {
             return (
               <button
                 key={id}
-                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-sky-300 hover:bg-sky-50/40 transition-all text-left"
+                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50/40 transition-all text-left"
                 onClick={() => { setSelectedTemplateId(id); setView("builder"); }}
               >
-                <div className="w-9 h-9 rounded-lg bg-navy-800 text-white flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
                   <Icon size={16} />
                 </div>
                 <div className="min-w-0">
@@ -346,7 +346,7 @@ export default function Workflow() {
             {draftWorkflows.map((w) => (
               <div
                 key={w.id}
-                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-sky-200 transition-all cursor-pointer opacity-70 hover:opacity-100"
+                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-slate-300 transition-all cursor-pointer opacity-70 hover:opacity-100"
                 onClick={() => setSelectedWorkflowId(w.id)}
               >
                 <div className="flex-1 min-w-0">
